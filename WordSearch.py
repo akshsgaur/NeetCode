@@ -44,12 +44,15 @@ class Solution:
             ):
                 return False
 
+            #Because it does not meet the criteria above, it is safe to explore the word further.
+            path.add((r,c))
             res = ( dfs(r+1, c, i+1) or
                     dfs(r-1, c, i+1) or
                     dfs(r, c+1, i+1) or
                     dfs(r, c-1, i+1)
 
             )
+            path.remove((r,c))
             return res
         
         #Check for each row and column that word exists or not

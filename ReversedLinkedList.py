@@ -10,19 +10,26 @@ from DataStructures.LinkedList import LinkedList
 
 
 class Solution:
-    def reverseListIterative(self, head):
-
-        if head == None:
-            return
-        if head.next == None:
-            return head
-
-        prev, curr = None, head
-        while curr:
-            nxt = curr.next
-            curr.next = prev
-            prev = curr
-            curr = nxt
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        #A Prev variable that is initialized to create a None value in the beginning
+        prev = None
+        # Initialzing cur to be the head
+        cur = head
+        #Iterating through the linked list
+        while cur: 
+            #Setting next to be the current's next to keep track of the 
+            nxt = cur.next
+            # Breaking the tie between cur and cur.next and setting the 
+            # next to the prev
+            # For example: Before: 0-x->1
+            #                       null <- 0 1->2
+            cur.next = prev
+            # Setting to the prev to the current 
+            prev = cur
+            # and moving the current to the next
+            cur = nxt
+        
+        #Returning the prev value because that is what will the head in the end
         return prev
 
     def reverseList_Recursive(self, head):

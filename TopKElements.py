@@ -28,18 +28,28 @@ Neetcode link: https://neetcode.io/problems/top-k-elements-in-list
 
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        count = {} 
-        freq = [[] for i in range(len(nums) + 1)]
+        #Creating a count hashmap to store the count of each number for example, 
+        # if 1 occurs 3 time, it will be 1:3
+        count = {}
+        #a list to store the counts in each index, for example, if 1 and 2 occurs 3 times, freq[2] = [1,2]
+        freq = [[] for i in range(len(nums)+1)]
 
-        for n in nums: 
-            count[n] = 1 + count.get(n, 0)
-        
+        # Running a for loop that will store how many times a certain number will occur, for example, if 1 occurs three times, 
+        # count[1] = 3
+        for n in nums:
+            count[n] = 1 + count.get(n,0)
+        print(count)
+        #Going through each count and appending that to that index
         for n,c in count.items():
             freq[c].append(n)
         
+        print(freq)
+        #initializing the result list
         res = []
+        #Going backwards in the list to get the most frequent
         for i in range(len(freq)-1, 0, -1):
-            for f in freq[i]: 
-                res.append(f)
+            # going through all the elements in particular index
+            for n in freq[i]: 
+                res.append(n)
                 if len(res) == k:
-                    return res 
+                    return res
